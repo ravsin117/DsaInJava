@@ -4,6 +4,7 @@ public class linkedlist {
     public static class ListNode {
         int val = 0;
         ListNode next = null;
+        ListNode random = null;
 
         ListNode(int val) {
             this.val = val;
@@ -21,9 +22,76 @@ public class linkedlist {
     //unfold
     //removeNthfromend
     //swgregateEvenOdd
+    public static ListNode segregateOddandEven(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode even = new ListNode(-1) , ep = even ;
+        ListNode odd = new ListNode(-1), op = odd;
+        ListNode curr = head;
+        while(curr!=null){
+            if(curr.val%2==0){
+                ep.next = curr;
+                ep = ep.next;
+            }else{
+                op.next = curr;
+                op = op.next;
+            }
+            curr = curr.next;
+        }
+        op.next = even.next; // for odd first
+        ep.next = null;
+        return odd.next;
+
+    }
     //segregate01
+    public static ListNode segregate01(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode zero = new ListNode(-1), zp = zero;
+        ListNode one = new ListNode(-1), op = one;
+        ListNode curr = head;
+        while(curr!=null){
+            if(curr.val==0){
+                zp.next =curr;
+                zp = zp.next;
+            }else{
+                op.next = curr;
+                op = op.next;
+            }
+            curr = curr.next;
+        }
+        zp.next = one.next;
+        op.next = null;
+
+        return zero.next;
+    }
     //segregate012 (edge case imp)
-    //
+    public static ListNode segregate012(ListNode head){
+        if(head==null || head.next==null)
+        return head;
+        ListNode zero = new ListNode(-1), one = new ListNode(-1), two = new ListNode(-1), zp = zero,
+        op = one , tp = two, curr = head;
+        while(curr!=null){
+            if(curr.val==0){
+                zp.next = curr;
+                zp = zp.next;
+            }else if(curr.val==1){
+                op.next = curr;
+                op = op.next;
+            }else{
+                tp.next = curr;
+                tp = tp.next;
+            }
+            curr = curr.next;
+        }
+        op.next = zp.next = tp.next = null;
+        op.next = two.next;
+        zp.next = one.next;
+        return zero.next;
+
+    }
 
     public static ListNode mergetwoList(ListNode l1, ListNode l2){
         if(l1==null || l2==null)
@@ -270,5 +338,84 @@ public class linkedlist {
             list = list.next;
         }
     }
+    //Random pointer question
+
+    //do dubly linkedlist yourself
+
+    // cycle detection in linkedlist
+    public static boolean isCycle(ListNode head){
+        if(head==null || head.next==null)
+        return false;
+
+        ListNode slow = head ;
+        ListNode fast = head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow= slow.next;
+            fast = fast.next.next;
+            if(fast==slow){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    // starting point of a cycle in LL
+    public static ListNode entryPoint(ListNode head){
+        if(head==null || head.next==null)
+        return null; //*
+
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode entry = head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){ // cycle exist if true
+                while(slow!=entry){
+                    slow = slow.next;
+                    entry= entry.next;
+                }
+                return entry;
+            }
+        }
+        return null;
+    }
+    // intersection point of 2 LL // leetcode 160
+    // rajnish sir's approach
+    public static ListNode getIntersection(ListNode headA, ListNode headB){
+        if(headA==null || headB==null)
+        return null;
+
+        ListNode tail = headA;
+
+        while(tail.next!=null){
+            tail = tail.next;
+        }
+        tail.next = headB;
+        ListNode interPt = entryPoint(headA);
+        tail.next= null; // restoring the original list
+        return interPt;
+    }
+
+    // strivers approach 
+    public static ListNode getIntersection2(ListNode headA, ListNode headB) {
+        ListNode d1 = headA;
+        ListNode d2 = headB;
+        while(d1!=d2){
+            if(d1==null){
+            d1= headB;
+            }else{
+                d1= d1.next;
+            }
+            if(d2==null){
+                d2 = headA;
+            }else{
+                d2= d2.next;
+            }
+        }
+        return d1;
+    }
+
+    // many questions to be added 
 
 }
