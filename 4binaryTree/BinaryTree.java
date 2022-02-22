@@ -115,6 +115,7 @@ public class BinaryTree{
         sum+=(lsum+rsum+root.data);
         return sum; 
     }
+    
     //max among all nodes
     public static int max(Node root){
         if(root==null)
@@ -125,6 +126,7 @@ public class BinaryTree{
         maxV = Math.max(root.data,(Math.max(lmax,rmax)));
         return maxV;
     }
+    
     //min amoong all nodes
     public static int min(Node root){
         if(root==null){
@@ -136,9 +138,89 @@ public class BinaryTree{
             minV = Math.min(root.data,Math.min(lmin,rmin));
             return minV;
     }
-    // height of the tree
+    
+    // height of the tree :interms of nodes
     public static int height(Node root){
-        
+        if(root==null)
+        return 0;
+        int h = 0 ;
+        int lh = height(root.left);
+        int rh = height(root.right);
+        h = Math.max(lh,rh)+1;
+        return h;
+    }
+    
+    //height in terms of edges
+    public static int heightE(Node root){
+        if(root==null)
+        return -1;
+        int h = 0 ;
+        int lh = height(root.left);
+        int rh = height(root.right);
+        h = Math.max(lh,rh)+1;
+        return h;
+    }
+
+    //no of leaf nodes in binary tree
+    public static int countLeaves(Node root){
+        if(node==null) return 0;
+        if(node.left==null&& node.right==null)
+        return 1;
+
+        return countLeaves(root.left)+countLeaves(root.right);
+    }
+
+    //print nodes having exactly one child in binary tree
+    public static void exactlyOneChild(Node node , ArrayList<Integer> ans){
+        if(node==null || (node.left==null && node.right==null)){
+            return;
+        } // leaf doesnt goes below this line 
+
+        if(node.left==null || node.right==null)
+            ans.add(node.data);
+            
+        exactlyOneChild(node.left, ans);
+        exactlyOneChild(node.right, ans);
+    }   
+    
+    // count nodes having exactly one child in tree
+    public static int countExactlyOneChild(Node node){
+        if(node==null || (node.left==null && node.right==null)){
+            return 0;
+        }
+        int left = countExactlyOneChild(node.left);
+        int right = countExactlyOneChild(node.right);
+        int sum = left+right;
+        if(node.left==null || node.right==null){
+            sum+=1;
+        }
+        return sum;
+    }
+
+   //node to root path
+    public static boolean nodeToRootPath(Node root, int data, ArrayList<Node>ans){
+       if(node==null){
+           return false;
+       }
+        if(node.data==data){
+         ans.add(node);
+           return true;
+        }
+        boolean res = nodeToRootPath(root.left, data, ans)||
+        nodeToRootPath(root.right, data, ans);
+        if(res) ans.add(node);
+        return res;
+    }
+    
+    public static ListNode nodeToRootPath(Node root, int data){
+    ArrayList<Node>ans = new ArrayList<>();
+    nodeToRootPath(root,data,ans);
+    return ans ;
+    }
+  
+    // with one function only 
+    public static ArrayList<Node> nodeToRootpath_02(){
+
     }
 
 }
