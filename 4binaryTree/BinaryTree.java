@@ -9,7 +9,7 @@ public class BinaryTree{
         Node left;
         Node right;
 
-        Node(int data , int left , int right){
+        Node(int data , Node left , Node right){
             this.data = data ;
             this.left = left;
             this.right = right;
@@ -17,6 +17,7 @@ public class BinaryTree{
         Node(int data){
             this(data,null,null); // constructor chaining : its calling above constructor
             // we can write this.data = data but why write it again when we can acces it from above
+            // this.data = data;
         }
     }
     
@@ -31,12 +32,12 @@ public class BinaryTree{
     }
     
     // recursive inorder
-    public static void inroder(Node root, ArrayList<Integer>ans){
+    public static void inorder(Node root, List<Integer>ans){
         if(root==null)
         return ;
-        inorder(root.left);
+        inorder(root.left,ans);
         ans.add(root.data);
-        inorder(root.right);
+        inorder(root.right,ans);
     }
 
     //iterative inorder traversal wit stack (Striver)
@@ -46,14 +47,14 @@ public class BinaryTree{
         Node node = root;
         while(true){
             if(node!=null){
-                stack.push(node.val);
+                stack.push(node);
                 node = node.left;
             }else{ // reached on null node 
                 if(stack.isEmpty())
                 break;
 
                 node = stack.pop();
-                inorder.add(node.val);
+                inorder.add(node.data);
                 node = node.right;
             }
 
@@ -64,30 +65,29 @@ public class BinaryTree{
     //inorder lettcode  by recursion(Rajneesh)
     public static List<Integer> inordertrav(Node root){
         if(root==null){
-            return new ArrayList<>()
+            return new ArrayList<>();
         }
-        List<Intger> myAns = new ArrayList<>();
+        List<Integer> myAns = new ArrayList<>();
         List<Integer>left = inordertrav(root.left);
         for(int ele :left){
             myAns.add(ele);
         }
-        myAns.add(root.val);
+        myAns.add(root.data);
         List<Integer>right = inordertrav(root.right);
         for(int ele :right){
             myAns.add(ele);
         }
-
         return myAns;
     }
     
     //recursive postorder
-    public static void preorder(Node root, ArrayList<integer>ans){       
+    public static void preorder2(Node root, ArrayList<Integer>ans){       
         if(root==null)
-        return ans;
+        return ;
 
-        preorder(root.left);
-        preorder(root.right);
-        ans.add(root.val);
+        preorder2(root.left,ans);
+        preorder2(root.right,ans);
+        ans.add(root.data);
     }
 
     //size (My approach)
@@ -162,12 +162,12 @@ public class BinaryTree{
     }
 
     //no of leaf nodes in binary tree
-    public static int countLeaves(Node root){
+    public static int countLeaves(Node node){
         if(node==null) return 0;
         if(node.left==null&& node.right==null)
         return 1;
 
-        return countLeaves(root.left)+countLeaves(root.right);
+        return countLeaves(node.left)+countLeaves(node.right);
     }
 
     //print nodes having exactly one child in binary tree
@@ -197,30 +197,60 @@ public class BinaryTree{
         return sum;
     }
 
-   //node to root path
+   //node to root path //RAJNISH SIR 1:
     public static boolean nodeToRootPath(Node root, int data, ArrayList<Node>ans){
-       if(node==null){
+       if(root==null){
            return false;
        }
-        if(node.data==data){
-         ans.add(node);
+        if(root.data==data){
+         ans.add(root);
            return true;
         }
         boolean res = nodeToRootPath(root.left, data, ans)||
         nodeToRootPath(root.right, data, ans);
-        if(res) ans.add(node);
+        if(res) ans.add(root);
         return res;
     }
     
-    public static ListNode nodeToRootPath(Node root, int data){
+    public static ArrayList<Node> nodeToRootPath(Node root, int data){
     ArrayList<Node>ans = new ArrayList<>();
     nodeToRootPath(root,data,ans);
     return ans ;
     }
   
+    // node to root path // method 2 :Rajnish sir
     // with one function only 
     public static ArrayList<Node> nodeToRootpath_02(){
 
     }
+
+    // Strivers approach
+
+    //print k levels down 
+
+    // print nodes that are kdistance away :Rajnish sir 
+    
+
+    // Print nodes that are k distance away  method1
+
+    //method:2
+
+
+    //Is binary search tree method 1
+
+    // method 2 
+
+    // strivers approach of isBst
+
+    //is balanced tree O(n2) :rajnish
+
+    // is balanced tree o(n):rajnish m-1
+
+    //m-2 O(n)
+
+    //Tilt of Binary tree
+
+
+
 
 }
