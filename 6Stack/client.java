@@ -47,10 +47,9 @@ public class client {
     
     public static void dynamicstackTest() throws Exception {
         dynamicstack st = new dynamicstack(10);
-        for (int i = 0; i <10; i++) {
+        for (int i = 0; i <100; i++) {
             st.push(i * 10);
         }
-        System.out.println("1");
         System.out.println(st);
         while (st.size() != 0) {
             System.out.println(st.pop());

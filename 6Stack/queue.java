@@ -6,7 +6,7 @@ public class queue {
     private int front ;
     private int back;
 
-    private void intialize(int len){
+    protected void intialize(int len){
         this.arr = new int[len];
         this.maxSize = len;
         this.size=0;
@@ -83,7 +83,10 @@ public class queue {
 
     }
 
-    @Override
+    public int maxSize(){
+        return this.maxSize;
+    }
+    
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("[");

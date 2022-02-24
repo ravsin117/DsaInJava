@@ -84,7 +84,10 @@ public class stack{
         return pop_();
     }
 
-    
+    public int maxSize() {
+        return this.maxSize;
+    }
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("[");
