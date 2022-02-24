@@ -220,7 +220,7 @@ public class BinaryTree{
   
     // node to root path // method 2 :Rajnish sir
     // with one function only 
-    public static ArrayList<Node> nodeToRootpath_02(){
+    // public static ArrayList<Node> nodeToRootpath_02(){
 
     }
 
