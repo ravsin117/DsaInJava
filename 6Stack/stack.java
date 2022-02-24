@@ -8,7 +8,7 @@ public class stack{
     //self defined constructor
     private void initialize(int len){
         this.arr = new int[len];
-        this.tos = -1;
+        this.tos = -1; // top of stack
         this.size = 0;  
         this.maxSize=len;
     }
@@ -78,16 +78,25 @@ public class stack{
         this.size--;
         return rv;
     }
-    // O(1)
+    // O(1)  // removes and returns
     public int pop()throws Exception{
         stackIsEmptyException();
         return pop_();
     }
 
-    // @Override
-    // public void toString(){
-
-    // }
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i = tos;i>=0;i--){
+            sb.append(this.arr[i]);
+            if(i!=0){
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
 
 

@@ -1,4 +1,5 @@
 public class queue {
+    
     private int arr[];
     private int maxSize;
     private int size;
@@ -9,11 +10,11 @@ public class queue {
         this.arr = new int[len];
         this.maxSize = len;
         this.size=0;
-        this.front =
+        this.front =0;
         this.back=0;
 
     }
-    
+
     public queue(){
         intialize(5);
     }
@@ -26,6 +27,7 @@ public class queue {
 
         return this.size;
     }
+
     public boolean isEmpty(){
         
         return this.size==0;
@@ -55,6 +57,7 @@ public class queue {
         this.back = (this.back+1) % this.maxSize;
         this.size++;
     }
+
     public void add(int data)throws Exception{
         queueOverFlowException(); 
         add_(data);
@@ -72,6 +75,7 @@ public class queue {
         this.size++;
         return rv;
     }
+
     public int remove() throws Exception{
         queueIsEmptyException();
         int rv = remove_();
@@ -79,4 +83,21 @@ public class queue {
 
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i = 0 ;i < this.size ;i++){
+            int idx = (i+this.front)% this.maxSize;
+            sb.append(this.arr[idx]);
+
+            if(i!=this.size-1)
+            sb.append(", ");
+
+        }
+        sb.append("]");
+        return("");
+    }
+
+    
 }
