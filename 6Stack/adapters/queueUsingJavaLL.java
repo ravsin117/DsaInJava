@@ -28,7 +28,7 @@ public class queueUsingJavaLL {
     }
 
     public static void main(String[] args) {
-
+ 
         queue q = new queue();
         q.add(10);
         q.add(20);

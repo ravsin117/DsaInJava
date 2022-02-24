@@ -1,7 +1,8 @@
-// package adapters;
+package adapters;
 
 // if we are asked to make queue and using LL is not allowed
 public class queueUsingSelfLL{
+    
     public static class queue{
 
     
@@ -54,7 +55,7 @@ public class queueUsingSelfLL{
     public int size(){
         return this.size;
     }
-    
+
     public boolean isEmpty(){
         return this.size==0;
     }

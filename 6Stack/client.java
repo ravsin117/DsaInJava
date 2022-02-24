@@ -4,7 +4,7 @@ public class client {
 
     public static void queuetest() throws Exception{
         queue q = new queue(10);
-        for(int i = 0 ; i<=10;i++){
+        for(int i = 0 ; i<10;i++){
             q.add(i*10);
         }
         while(q.size()!=0){
@@ -15,7 +15,7 @@ public class client {
 
     public static void stacktest() throws Exception{
         stack st = new stack(10);
-        for(int i = 0 ; i<=10;i++){
+        for(int i = 0 ; i<10;i++){
             st.push(i*10);
         }
         while(st.size()!=0){
@@ -36,13 +36,28 @@ public class client {
 
     public static void queueBehaviourUsingLL(){
         LinkedList<Integer> st = new LinkedList<>();
-        for (int i = 0; i <= 10; i++) {
-            st.addLast(i * 10); //O(1) as it access tail
+        for(int i = 0 ; i<=10;i++){
+            st.add(i*10);
+            System.out.println(i*10);
         }
-        while (st.size() != 0) {
-            System.out.println(st.removeFirst());
+        while(st.size()!=0){
+            System.out.println(st.remove());
         }
     }
+    
+    public static void dynamicstackTest() throws Exception {
+        dynamicstack st = new dynamicstack(10);
+        for (int i = 0; i <10; i++) {
+            st.push(i * 10);
+        }
+        System.out.println("1");
+        System.out.println(st);
+        while (st.size() != 0) {
+            System.out.println(st.pop());
+        }
+
+    }
+
     public static void main(String[] args) throws Exception{
         // i am using top function which throws exception so main is also infected now it can also throw exception 
         // stack st = new stack(10);
@@ -65,7 +80,9 @@ public class client {
         // stackBehaviourUsingLL();
 
         // queue implemented using LL
-        queueBehaviourUsingLL();
+        // queueBehaviourUsingLL();  // verify by video once
+
+        dynamicstackTest();
     }
     
 }

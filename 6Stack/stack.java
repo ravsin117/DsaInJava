@@ -6,7 +6,7 @@ public class stack{
     private int maxSize; 
     
     //self defined constructor
-    private void initialize(int len){
+    protected void initialize(int len){
         this.arr = new int[len];
         this.tos = -1; // top of stack
         this.size = 0;  
@@ -56,7 +56,7 @@ public class stack{
     }
 
     public void push(int data) throws Exception{
-        stackOverFlowException();  
+        stackOverFlowException(); 
         push_(data);
 
     }
@@ -84,7 +84,7 @@ public class stack{
         return pop_();
     }
 
-    @Override
+    
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("[");
