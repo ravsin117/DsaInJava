@@ -1,1 +1,2 @@
 implement stack using queue
+ - we will implement stack using linkedlist only but we will use functionalities of queueUsingselfLL

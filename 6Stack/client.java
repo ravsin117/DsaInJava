@@ -34,6 +34,15 @@ public class client {
         }
     }
 
+    public static void queueBehaviourUsingLL(){
+        LinkedList<Integer> st = new LinkedList<>();
+        for (int i = 0; i <= 10; i++) {
+            st.addLast(i * 10); //O(1) as it access tail
+        }
+        while (st.size() != 0) {
+            System.out.println(st.removeFirst());
+        }
+    }
     public static void main(String[] args) throws Exception{
         // i am using top function which throws exception so main is also infected now it can also throw exception 
         // stack st = new stack(10);
@@ -51,7 +60,12 @@ public class client {
         //     System.out.println(st.pop());
         // }
 
-        stackBehaviourUsingLL();
+        // adapters -
+        // stack implemented using LL
+        // stackBehaviourUsingLL();
+
+        // queue implemented using LL
+        queueBehaviourUsingLL();
     }
     
 }
