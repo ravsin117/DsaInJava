@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
@@ -611,21 +610,182 @@ public class BinaryTree{
 
     //generic tree
 
+    public static class TreeNode{
+        int data = 0 ; 
+        ArrayList<TreeNode>children;
+        TreeNode(int data){
+            this.data = data;
+        }
+    }
     //size
+    public static int sizeGT(TreeNode node){
+        if(node==null){
+            return 0;
+        }
+        int count = 0; 
+        for(int i =  0;  i<node.children.size();i++){
+            TreeNode child = node.children.get(i);
+            count+=sizeGT(child);
+        }
+        return count+1; // for leaf node no loop runs as it doesnt have any children :. returns 1 only;
+    }
     //height
     //min
+    public static int minGT(TreeNode root){
+        int min = root.data;
+        for(TreeNode child : root.children){
+            min = Math.min(min,minGT(child));
+        }
+        return min;
+    }
     //max
+    public static int maxGT(TreeNode root) {
+        int max = root.data;
+        for (TreeNode child : root.children) {
+            max = Math.max(max, minGT(child));
+        }
+        return max;
+    }
     //sum
-    //find
+    public static int sumGT(TreeNode root){
+        int sum = root.data;
+        for(TreeNode child:root.children){
+            sum+=sumGT(child);
+        }
+        return sum;
+    }
+    //find in GT
+    public static boolean find(TreeNode root, int val){
+        if(root.data == val){
+            return true;
+        }
+        boolean res= false;
+        for(TreeNode child:root.children){
+            res= res|| find(child, val);
+        }
+        return res;
+    }
     //countleaves
+    public static int countLeavesOfGT(TreeNode root){
+        if(root.children.size()==0){
+            return 1;
+        }
+        int count =0;
+        for(TreeNode child:root.children){
+            count+=countLeavesOfGT(child);
+        }
+        return count;
+    }
     //node to root path
+    public static boolean nodeToRootPathGT(TreeNode node , int data, ArrayList<Integer>ans){
+        if(node.data == data){
+            ans.add(node.data);
+            return true;
+        }
+        boolean res = false;
+        for(TreeNode child:node.children){
+            res= res||nodeToRootPathGT(child, data, ans);
+        }
+        if(res){
+            ans.add(node.data);
+        }
+        return res;
+    }
     //lca
+    // public static int lcaGT(TreeNode root, int p , int q){
+    //     ArrayList<Integer> list1 = nodeToRootPathGT(root,p);
+    //     ArrayList<Integer>list2 = nodeToRootPathGT(root, q);
+    //     int i = list1.size()-1;
+    //     int j = list2.size()-1;
+    //     int LCA = -1;
+    //     while(i<list1.size()&& j<list2.size()){
+    //         if(list1.get(i)!=list2.get(i)){
+    //             break;
+    //         }
+    //         LCA = list2.get(j);
+    //     }
+    //     return LCA;
+    // }
+
     //distance between two node in generic tree
+    // public static int distbwTwoNodesInGT(TreeNode node , int p , int q){
+    //     ArrayList<Integer>list1 = nodeToRootPathGT(node, p);
+    //     ArrayList<Integer>list2 = nodeToRootPathGT(node, q);
+    //     int s1 = list1.size();
+    //     int s2 = list2.size();
+    //     int lca = lcaGT(node,p,q);
+    //     int dist = s1+s2 -2*lca;
+    // }
+
     //are trees similar
+    public static boolean areSimilar(TreeNode node1 , TreeNode node2){
+        if(node1.children.size()!=node2.children.size()){
+            return false;
+        }
+        boolean res = true;
+        for(int i = 0 ; i < node1.children.size();i++){
+            TreeNode child1 = node1.children.get(i);
+            TreeNode child2 = node2.children.get(i);
+            res = res && areSimilar(child1,child2);
+        }
+        return res;
+    }
+
     //are trees mirror
+    public static boolean areMirror(TreeNode node1, TreeNode node2){
+        if(node1.children.size()!=node2.children.size()){
+            return false;
+        }
+        boolean res = true;
+        int size = node1.children.size();
+        for(int i = 0 ; i< size;i++){
+            TreeNode child1 = node1.children.get(i);
+            TreeNode child2 = node2.children.get(size-1-i);
+            res = res&& areMirror(child1, child2);
+        }
+        return res;
+    }
+    //Is trees symmetric 
+    public static boolean areSymmetric(TreeNode node){
+        return areMirror(node,node);
+    }
+
     //ceil and floor
+    static int ceil= (int)1e9;
+    static int floor =-(int)1e9;
+    public static void ceilAndFloor(TreeNode node , int data){
+        if(node.data>data){
+            ceil = Math.min(ceil,node.data);
+        }else if(node.data<data){
+            floor = Math.max(floor,node.data);
+        }
+        for(TreeNode child : node.children){
+            ceilAndFloor(child, data);
+        }
+
+    }
+
     //kth largest element
+
     //linearize
+    public static void linearize(TreeNode node){
+
+        for(TreeNode child :node.children){
+            linearize(child);
+        }
+
+        for(int i = node.children.size()-1;i>0;i--){
+            TreeNode tail = getTail(node.children.get(i-1));
+            tail.children.add(node.children.get(i));
+            node.children.remove(i);
+        }
+    }
+    public static TreeNode getTail(TreeNode node){
+        while(node.children.size()!=0){
+            node = node.children.get(0);
+        }
+        return node;
+    }
 
 
 
