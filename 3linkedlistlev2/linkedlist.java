@@ -21,6 +21,7 @@ public class linkedlist {
     //fold
     //unfold
     //removeNthfromend
+
     //swgregateEvenOdd
     public static ListNode segregateOddandEven(ListNode head){
         if(head==null || head.next==null){
@@ -67,7 +68,7 @@ public class linkedlist {
 
         return zero.next;
     }
-    //segregate012 (edge case imp)
+    //segregate012 (edge case imp) list of 2s
     public static ListNode segregate012(ListNode head){
         if(head==null || head.next==null)
         return head;
