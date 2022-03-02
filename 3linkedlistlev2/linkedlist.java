@@ -126,8 +126,6 @@ public class linkedlist {
         return mergetwoList(leftlist, rightlist);
 
     }
-     
-
     // reverse node in k group
     private static ListNode th = null, tt = null;
 
