@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-public class java{
+public class graph{
     public static ArrayList<Integer> bfsAlgo(int v, ArrayList<ArrayList<Integer>>adj){
         ArrayList<Integer> bfs = new ArrayList<>();
         boolean visited[] = new boolean[v+1];
@@ -24,6 +24,28 @@ public class java{
         }
         return bfs;
 
+    }
+    public static ArrayList<Integer>bfsalgo1(int v , ArrayList<ArrayList<Integer>>adj){
+        ArrayList<Integer>bfs = new ArrayList<>();
+        boolean visited[] = new boolean[v+1];
+        LinkedList<Integer>que = new LinkedList<>();
+        for(int i = 1 ; i <=v ;i++){
+            if(visited[i]==false){
+                que.addLast(i);
+                visited[i] = true;
+                while(!que.isEmpty()){
+                    Integer node = que.poll();
+                    bfs.add(node);
+                    for(Integer it : adj.get(node)){
+                        if(visited[it]==false){
+                            visited[it]= true;
+                            que.addLast(it);
+                        }
+                    }
+                }
+            }
+        }
+        return bfs;
     }
     
     public static Arraylist<Intger> dfsAlgo(int i,boolean vis[], ArrayList<ArrayList<Integer>> adj,ArrayList<Integer>storedfs){

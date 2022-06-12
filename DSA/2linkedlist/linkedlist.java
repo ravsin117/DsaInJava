@@ -1,8 +1,11 @@
 public class linkedlist {   
        
-    private class Node{ 
+    private static class Node{ 
         int data = 0;
         Node next = null;
+        Node(){
+
+        }
         Node(int data){
             this.data = data;
         }
@@ -28,7 +31,7 @@ public class linkedlist {
         return sb.toString();
     }
 
-    public static int size(){
+    public int size(){
         return this.size;
     }
 
@@ -153,8 +156,9 @@ public class linkedlist {
     
 
     private void addNodeAt(Node node , int idx){
+        
         if(idx==0) addFirstNode(node);
-        else if (idx==this.size) addLastNode(node);
+        else if (idx==this.size-1) addLastNode(node);
         else{
             Node prevNode = getNodeAt(idx-1);
             Node forwardNode = prevNode.next;
@@ -263,9 +267,9 @@ public class linkedlist {
         if(head==null || head.next==null){
             return head;
         }
-        None zero = new Node(-1), zp = zero;
-        None one = new Node(-1), op = zero;
-        None two = new Node(-1), tp = zero;
+        Node zero = new Node(-1), zp = zero;
+        Node one = new Node(-1), op = zero;
+        Node two = new Node(-1), tp = zero;
         Node curr= head;
         while(curr!=null){
             if(curr.data==0){

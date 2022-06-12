@@ -204,7 +204,7 @@ public class BinaryTree{
            return false;
        }
         if(root.data==data){
-         ans.add(root);
+           ans.add(root);
            return true;
         }
         boolean res = nodeToRootPath(root.left, data, ans)||
@@ -321,13 +321,13 @@ public class BinaryTree{
     }
 
     //Is binary search tree method 1
-    // method 1
+    // method 1!
     static Node prev= null;
     public static boolean isBst(Node node){
         if(node==null){
             return true;
         }
-        if(isBst(node.left)){
+        if(!isBst(node.left)){
             return false;
         }
         if(prev!=null && prev.data > node.data){
@@ -335,7 +335,7 @@ public class BinaryTree{
         }
         prev = node;
 
-        if(isBst(node.right)){
+        if(!isBst(node.right)){
             return false;
         }
         return true;
