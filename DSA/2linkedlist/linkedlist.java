@@ -156,7 +156,6 @@ public class linkedlist {
     
 
     private void addNodeAt(Node node , int idx){
-        
         if(idx==0) addFirstNode(node);
         else if (idx==this.size-1) addLastNode(node);
         else{
@@ -295,17 +294,17 @@ public class linkedlist {
     // Practise
 
     //remove duplicates
-
+    
     public static Node removedup(Node head){
         if(head==null || head.next==null){
             return head;
         }
         Node dummy = new Node(-1);
-        Listnode curr = head;
-        Listnode dp = dummy;
+        Node curr = head;
+        Node dp = dummy;
         while(curr!=null){
             while(curr!=null && dp.data==curr.data){
-                ListNode forw = curr.next;
+                Node forw = curr.next;
                 curr.next=null;
                 curr= forw;
             }
@@ -366,7 +365,7 @@ public class linkedlist {
             c2 = f2;
         }
         // if size is even set tail to mid else mid.next;
-
+        return head;
     }
     public static void reverse(Node head){
         if(head==null || head.next==null){

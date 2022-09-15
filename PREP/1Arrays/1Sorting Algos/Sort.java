@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Sort{
 
 
@@ -9,7 +11,7 @@ public class Sort{
     // bubble sort 
     public static void bubbleSort(int[]arr){
         int n = arr.length;
-        for(int i  =0 ; i< n-1 ; i++){
+        for(int i  =0 ; i< n-1 ; i++){ 
             boolean swapped = false;
             for(int j = 0 ; j<n-1-i ;j++){
                 if(arr[j]>arr[j+1]){
@@ -50,17 +52,18 @@ public class Sort{
             swap(arr,i , min);
         }
     }
+    
     //quick sort -> partition exchange sort 
     public static void quickSort(int [] arr , int lb , int ub){
-
         if(lb<ub){
             int locationOfPivot = partition(arr,lb,ub);
             quickSort(arr, lb, locationOfPivot-1);
             quickSort(arr, locationOfPivot+1, ub);
         }
-    }
+    } 
+    // to determine the location of pivot elem
     public static int partition(int [] arr , int lb ,int ub){
-        int pivot  = arr[lb];
+        int pivot  = arr[lb] ;
         int start = lb , end = ub ;
         while(start<end){
             while(start< arr.length && arr[start]<=pivot){
@@ -84,7 +87,7 @@ public class Sort{
             mergeSort(arr, lb, mid);
             mergeSort(arr, mid+1, ub);
             mergetwoSortedArray(arr,lb , mid , ub);
-                   
+                  
         }
     }
     public static void mergetwoSortedArray(int [] arr , int l , int m , int r){
@@ -98,9 +101,10 @@ public class Sort{
         for(int i =0; i < n2 ;i++){
             right[i] = arr[m+1+i];
         }        
-        int i = 0 , j = 0 , k =l;
+        int i = 0 , j = 0 , k = l;
 
         while(i<left.length && j<right.length){
+            
             if(left[i]<=right[j]){
                 arr[k] = left[i];
                 i++;
@@ -123,6 +127,14 @@ public class Sort{
             k++;
         }
     
+    }
+    public static void revsort(int[] arr){
+        // Arrays.sort(arr,(a,b)->{
+        //     return b-a;
+        // });
+        for(int a: arr){
+            System.out.println(a);
+        }
     }
     public static void main(String[]args){
         int [] arr = {15,16,6,8,5,100,45,32,45,78,46,23};
